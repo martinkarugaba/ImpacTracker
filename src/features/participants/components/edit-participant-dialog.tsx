@@ -57,6 +57,21 @@ export function EditParticipantDialog({
         mainChallenge: data.mainChallenge || null,
         skillOfInterest: data.skillOfInterest || null,
         expectedImpact: data.expectedImpact || null,
+        // New demographic fields with defaults
+        disabilityType: null,
+        wageEmploymentStatus: null,
+        wageEmploymentSector: null,
+        wageEmploymentScale: null,
+        selfEmploymentStatus: null,
+        selfEmploymentSector: null,
+        businessScale: null,
+        secondaryEmploymentStatus: null,
+        secondaryEmploymentSector: null,
+        secondaryBusinessScale: null,
+        accessedLoans: "no",
+        individualSaving: "no",
+        groupSaving: "no",
+        locationSetting: null,
       };
 
       const result = await updateParticipant.mutateAsync({
@@ -111,6 +126,23 @@ export function EditParticipantDialog({
     skillOfInterest: participant.skillOfInterest || "",
     expectedImpact: participant.expectedImpact || "",
     isWillingToParticipate: participant.isWillingToParticipate as "yes" | "no",
+    // Financial inclusion fields - using defaults if not present in participant data
+    accessedLoans: "no" as "yes" | "no",
+    individualSaving: "no" as "yes" | "no",
+    groupSaving: "no" as "yes" | "no",
+    // Employment tracking fields - using empty strings as defaults
+    wageEmploymentStatus: "",
+    wageEmploymentSector: "",
+    wageEmploymentScale: "",
+    selfEmploymentStatus: "",
+    selfEmploymentSector: "",
+    businessScale: "",
+    secondaryEmploymentStatus: "",
+    secondaryEmploymentSector: "",
+    secondaryBusinessScale: "",
+    // Location and disability fields
+    locationSetting: "rural" as "urban" | "rural",
+    disabilityType: "",
   };
 
   return (
